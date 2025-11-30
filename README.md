@@ -1,42 +1,99 @@
-Task 1: Process Creation Utility
+# Operating System Assignments
+
+**Name:** Payal Rathore  
+**Roll No.:** 2301410022  
+**Course:** BTech CSE (Cyber Security)
+
+---
+
+## 📌 Linux Process Simulation
+
+This repository contains assignments that simulate core operating system concepts using Python.
+
+---
+
+## **Assignment 1: Linux Process Management**
+
+### Tasks
+1. **Create processes** using `os.fork()`.  
+2. **Execute system commands** with `os.execvp()`.  
+3. **Demonstrate** zombie and orphan processes.  
+4. **Inspect process details** from `/proc/[pid]`.  
+5. **Assign process priorities** using `os.nice()`.  
+
+---
+
+## **Assignment 2: System Startup Simulation**
+
+- Simulates a simplified system startup using the `multiprocessing` and `logging` modules.  
+- Creates multiple child processes, runs dummy tasks, and logs lifecycle events.  
+- Generates a log file: **`process_log.txt`**.  
+
+---
+
+## **Assignment 3: Scheduling**
+
+Implements **CPU scheduling algorithms** in Python.
+
+### Algorithms Implemented
+- **First Come First Serve (FCFS):** Processes are scheduled in the order they arrive.  
+- **Shortest Job First (SJF):** Process with the shortest burst time is scheduled first.  
+- **Round Robin (RR):** Each process gets a fixed time quantum in cyclic order.  
+
+### Metrics Calculated
+- **Waiting Time**  
+- **Turnaround Time**  
+- **Average Waiting Time**  
+- **Average Turnaround Time**  
+
+### Comparison
+- **SJF:** Gives the lowest average waiting and turnaround time, but may cause starvation of long processes.  
+- **FCFS:** Simple but can lead to the convoy effect if a long job arrives first.  
+- **Round Robin:** Ensures fairness (all processes get CPU time), but performance depends on the time quantum chosen.
+
+  ## Assignment 3: Memory Allocation Strategies
+
+Simulates different memory allocation strategies in an operating system.
+
+### Algorithms Implemented
+- **First Fit:** Allocates the first block that is large enough for the process.
+- **Best Fit:** Allocates the smallest block that is large enough to minimize waste.
+- **Worst Fit:** Allocates the largest available block to reduce future fragmentation.
+
+### Metrics Observed
+- Process allocation success or failure.
+- Block utilization after allocation.
+
+### How to Run
+```bash
+python3 memory_allocation.py
 
 
-Write a Python program that creates N child processes using os.fork(). Each child prints:
-- Its PID
-- Its Parent PID
-- A custom message
-The parent should wait for all children using os.wait().
+---
 
+## ⚙️ Tools Used
+- **Python 3.x**  
+- Modules: `os`, `subprocess`, `multiprocessing`, `time`, `logging`  
 
+---
 
-Task 2: Command Execution Using exec()
-Modify Task 1 so that each child process executes a Linux command (ls, date, ps, etc.) using os.execvp() or subprocess.run().
-Task 3: Zombie & Orphan Processes
-Zombie: Fork a child and skip wait() in the parent.
-Orphan: Parent exits before the child finishes.
-Use ps -el | grep defunct to identify zombies.
-Task 4: Inspecting Process Info from /proc
-Take a PID as input. Read and print:
-- Process name, state, memory usage from /proc/[pid]/status
-- Executable path from /proc/[pid]/exe
-- Open file descriptors from /proc/[pid]/fd
-Task 5: Process Prioritization
-Create multiple CPU-intensive child processes. Assign different nice() values. Observe and log execution order to show scheduler impact.
+## 🚀 How to Run
 
-Expected Output:
+```bash
+# Assignment 1: Linux Process Management
+python3 process_management.py
 
-- Child-parent process tree
-- Executed system commands from child processes
-- Verified zombie/orphan states using ps
-- Process details from /proc
-- Impact of priority using different nice values
+# Assignment 2: System Startup Simulation
+python3 startup_simulation.py
+cat process_log.txt   # View generated log file
 
-Complexity Analysis:
-Time Complexity: O(n) for n processes.
-Space Complexity: O(n) due to maintaining process IDs and logs.
+# Assignment 3: Scheduling
 
-Practical Applications:
-- Operating system kernel development
-- Performance tuning via scheduling
-- Real-time and embedded system programming
-- Debugging tools and monitoring systems
+# Run First Come First Serve
+python3 fcfs.py
+
+# Run Shortest Job First
+python3 sjf.py
+
+# Run Round Robin (with user-defined quantum)
+python3 round_robin.py
